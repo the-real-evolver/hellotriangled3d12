@@ -1,0 +1,5 @@
+# ignore Visual Studio temporary files, build results etc.
+.vs
+bin
+build
+HelloTriangleD3D12.vcxproj.user

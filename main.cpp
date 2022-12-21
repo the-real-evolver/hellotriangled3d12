@@ -20,9 +20,9 @@ const char* const DefaultGpuProgram =
 "    output.uv = uv;\n"
 "    return output;\n"
 "}\n"
-"float4 DefaultFragmentShader(float4 position : SV_POSITION, float2 uv : TEXCOORD) : SV_TARGET\n"
+"float4 DefaultFragmentShader(VertexShaderOutput input) : SV_TARGET\n"
 "{\n"
-"   return float4(uv, 0.0, 1.0);\n"
+"   return float4(input.uv, 0.0f, 1.0f);\n"
 "}\n";
 
 static const char* const ClassName = "HELLOTRIANGLED3D12";
@@ -291,6 +291,8 @@ WinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE /*hPrevInstance*/, _In_ LPST
     uploadCommandAllocator->Reset();
     CloseHandle(waitEvent);
     uploadFence->Release();
+    uploadCommandList->Release();
+    uploadCommandAllocator->Release();
 
     /* create fences for frame synchronisation */
     for (i = 0U; i < BackBufferCount; ++i)
